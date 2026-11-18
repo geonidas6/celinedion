@@ -1,0 +1,17 @@
+# Production Compose template for the celine-dion backend.
+#
+# The deployer owns the real containers and adds the Traefik labels plus the
+# public URL routing (https://celine-dion.it-sefako.com). Do not start, stop or
+# delete production containers from this worktree. Validate with:
+#   docker compose config
+#   docker compose build        (image build only, no container started)
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # The deployer publishes this port through the reverse proxy; do not hard
+    # code Traefik labels here.
+    ports:
+      - "8000:8000"
