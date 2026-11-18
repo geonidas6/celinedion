@@ -1,0 +1,6 @@
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import { formatDuration, youtubeThumbnail } from "../lib/catalog";
+import { EqualizerIcon, PlayIcon } from "./Icons";
+export function SongCard({ song, isCurrent, isPlaying, onSelect }) {
+    return (_jsx("li", { children: _jsxs("button", { type: "button", className: `song-card${isCurrent ? " song-card--current" : ""}`, onClick: () => onSelect(song), "aria-label": `Lire ${song.title}`, children: [_jsxs("span", { className: "song-card__art", children: [_jsx("img", { src: youtubeThumbnail(song.youtubeId, "mq"), alt: "", loading: "lazy", width: 320, height: 180 }), _jsx("span", { className: "song-card__shade", "aria-hidden": "true" }), _jsx("span", { className: "song-card__play", "aria-hidden": "true", children: _jsx(PlayIcon, { size: 20 }) }), _jsx("span", { className: "song-card__duration", children: formatDuration(song.duration) }), isCurrent ? (_jsxs("span", { className: "song-card__now", children: [_jsx(EqualizerIcon, {}), isPlaying ? "En lecture" : "En pause"] })) : null] }), _jsxs("span", { className: "song-card__body", children: [_jsx("span", { className: "song-card__title", children: song.title }), _jsx("span", { className: "song-card__meta", children: [song.album, song.year].filter(Boolean).join(" · ") || "Céline Dion" })] })] }) }));
+}
